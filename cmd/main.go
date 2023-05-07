@@ -50,10 +50,9 @@ func main() {
 	http.HandleFunc("/", handler.Publish)
 
 	http.HandleFunc("/order/get", orderHandler.ReceiveOrderByID)
-	http.HandleFunc("/order/list", orderHandler.ReceiveAllOrders)
 	http.HandleFunc("/order/uid/list", orderHandler.ReceiveAllOrderUIDs)
 
-	if err := http.ListenAndServe(":5000", nil); err != nil {
+	if err := http.ListenAndServe(":5010", nil); err != nil {
 		log.Fatal("can't up the http server ", err)
 	}
 }

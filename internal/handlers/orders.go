@@ -42,31 +42,6 @@ func (o *OrderHandler) ReceiveOrderByID(w http.ResponseWriter, req *http.Request
 	_, _ = fmt.Fprintf(w, "%s", resp)
 }
 
-func (o *OrderHandler) ReceiveAllOrders(w http.ResponseWriter, req *http.Request) {
-	orderUID := req.Form.Get("search")
-
-	if len(orderUID) <= 1 {
-		_, _ = w.Write([]byte("error while getting args"))
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	order, err := o.cache.Get(orderUID)
-	if err != nil {
-		_, _ = w.Write([]byte(err.Error()))
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	resp, err := json.Marshal(order)
-	if err != nil {
-		_, _ = w.Write([]byte(err.Error()))
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	_, _ = fmt.Fprintf(w, "%s", resp)
-}
-
 func (o *OrderHandler) ReceiveAllOrderUIDs(w http.ResponseWriter, req *http.Request) {
 	keys := o.cache.GetKeyList()
 	fmt.Println(keys)

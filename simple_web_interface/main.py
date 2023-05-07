@@ -10,19 +10,22 @@ from app import app
 def index():
     print(request.form)
     if request.form.get("orders") and request.form["send"] == "send":
-        r = requests.post(url="http://127.0.0.1:5000/order/get",
+        r = requests.post(url="http://127.0.0.1:5010/order/get",
                           params={'orderUID': request.form.get("orders")})
+        try:
+            r.json()
+        except:
+            pass
+            r = requests.get(url="http://127.0.0.1:5010/order/uid/list")
+            return render_template('index.html', error = "не найдено заказа с таким UID", orders=r.json())
         pj = str(json.dumps(r.json(), indent=2)).split('\n')
 
         return render_template('results.html', orders=pj)
     else:
-        r = requests.get(url="http://127.0.0.1:5000/order/uid/list")
+        r = requests.get(url="http://127.0.0.1:5010/order/uid/list")
         return render_template('index.html', orders=r.json())
 
 
 if __name__ == '__main__':
     import os
-
-    if 'WINGDB_ACTIVE' in os.environ:
-        app.debug = False
-    app.run(port=5002)
+    app.run(port=5020)
