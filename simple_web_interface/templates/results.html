@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Working with db</title>
+</head>
+<body bgcolor=silver text=black>
+<h2>Результаты</h2>
+{% if orders %}
+    {%for row in orders%}
+         {{row}}<br>
+    {% endfor %}
+    {% else %}
+    <p>Нет данных</p>
+    {% endif %}
+</table>
+<br>
+<a href="/"> Назад к форме ввода</a><br><br>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>заказы</title>
+  </head>
+  <body bgcolor=silver text=black>
+
+    <form method='POST' action=''>
+      <label for=otdel> Показать информацию по заказу  </label>
+      <input type=text id=department name=orders><input value='send' name='send' type='submit'>
+    </form>
+
+    {%for row in orders%}
+         {{row}}<br>
+    {% endfor %}

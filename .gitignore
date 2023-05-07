@@ -1,0 +1,29 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*/venv
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# IDE
+.DS_Store
+.idea
+.idea/
+.vscode
+.history
+
+# Project specific
+.env
+.pkg
+docker-compose.override.yml
+bin
+dev-docker-compose.yml
+vendor
+
+.cache

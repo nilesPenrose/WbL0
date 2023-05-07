@@ -1,0 +1,16 @@
+services:
+  nats:
+    image: nats-streaming:latest
+    ports:
+    - "4222:4222"
+    - "8222:8222"
+    volumes:
+    - "./nats-streaming-1:/data"
+  postgres:
+    build:
+      context: .
+      dockerfile: "./docker/postgres/Dockerfile"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
